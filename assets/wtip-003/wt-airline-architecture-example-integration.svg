@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="36.900cm" height="34.312cm" viewBox="2.650 -6.475 36.900 34.312"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Layer: Pozadí -->
+<g id="Pozadí">
+<!-- Flowchart - Box -->
+<rect x="21.273" y="-6.425" width="18.227" height="8.375" fill="#FFFFFF" stroke="#000000" stroke-width="0.100" stroke-dasharray="0.10,0.10" rx="0.000" />
+<!-- Flowchart - Box -->
+<rect x="22.666" y="-2.750" width="7.567" height="2.950" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="26.450" y="-1.480"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data</text>
+<text x="26.450" y="-0.680"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+root URI</text>
+<!-- Flowchart - Box -->
+<rect x="31.390" y="-2.725" width="7.567" height="2.950" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="35.174" y="-1.055"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+...</text>
+<!-- Flowchart - Box -->
+<rect x="2.700" y="-3.162" width="13.850" height="18.000" fill="#FFFFFF" stroke="#000000" stroke-width="0.100" stroke-dasharray="0.10,0.10" rx="0.000" />
+<!-- Standard - Text -->
+<text x="6.800" y="-1.187"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline systems</text>
+<!-- Flowchart - Box -->
+<rect x="5.968" y="3.938" width="6.915" height="2.700" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="9.425" y="5.083"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Internal</text>
+<text x="9.425" y="5.883"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+system(s)</text>
+<!-- Flowchart - Box -->
+<rect x="4.897" y="9.188" width="9.422" height="3.500" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="9.608" y="10.333"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+WT Adapter</text>
+<text x="9.608" y="11.133"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+(A public-facing</text>
+<text x="9.608" y="11.933"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+REST API)</text>
+<!-- Flowchart - Box -->
+<rect x="21.600" y="6.838" width="9.850" height="7.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100" stroke-dasharray="0.10,0.10" rx="0.000" />
+<text x="26.525" y="10.983"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Swarm</text>
+<!-- Flowchart - Box -->
+<rect x="5.254" y="0.163" width="9.192" height="2.700" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="9.850" y="1.308"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Once-off uploading</text>
+<text x="9.850" y="2.108"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+script</text>
+<!-- Flowchart - Ellipse -->
+<ellipse cx="22.422" cy="24.711" rx="3.078" ry="3.077" fill="#FFFFFF" stroke="#000000"  stroke-width="0.100" />
+<text x="22.422" y="24.506"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Data</text>
+<text x="22.422" y="25.306"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+consumer</text>
+<!-- Standard - Text -->
+<text x="26.336" y="-4.337"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+WT Airline Index (blockchain)</text>
+<!-- Standard - Line -->
+<line x1="26.460" y1="0.248" x2="26.499" y2="6.564" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="26.246,6.177 26.499,6.676 26.746,6.174 "/>
+<!-- Standard - Line -->
+<line x1="21.550" y1="10.832" x2="14.592" y2="10.893" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="14.978,10.640 14.480,10.894 14.982,11.140 "/>
+<!-- Standard - Line -->
+<line x1="25.346" y1="14.787" x2="23.369" y2="21.497" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="23.239,21.054 23.337,21.605 23.718,21.196 "/>
+<!-- Standard - Line -->
+<line x1="11.283" y1="12.737" x2="20.141" y2="22.259" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="19.693,22.145 20.217,22.341 20.059,21.804 "/>
+<!-- Standard - Line -->
+<line x1="14.495" y1="0.732" x2="22.400" y2="-0.595" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="22.058,-0.284 22.510,-0.613 21.975,-0.777 "/>
+<!-- Standard - Line -->
+<line x1="12.367" y1="2.912" x2="21.354" y2="7.911" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="20.893,7.941 21.452,7.966 21.137,7.504 "/>
+<!-- Standard - Line -->
+<line x1="7.253" y1="9.188" x2="7.658" y2="6.858" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="7.838,7.283 7.677,6.748 7.345,7.197 "/>
+<!-- Standard - Line -->
+<line x1="11.154" y1="6.638" x2="11.896" y2="8.974" stroke="#0000FF" stroke-width="0.100" />
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="11.540,8.680 11.930,9.081 12.017,8.529 "/>
+<!-- Standard - Arc -->
+<path stroke="#0000FF" fill="none" stroke-width="0.100"  d ="M 26.379,0.251 A 11.759,11.759 0 0,1 25.488,23.512 "/>
+<polyline fill="none" stroke="#0000FF" stroke-width="0.100"  points="25.854,23.232 25.377,23.524 25.897,23.730 "/>
+</g>
+</svg>
