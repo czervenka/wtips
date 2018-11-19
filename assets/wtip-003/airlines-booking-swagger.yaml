@@ -71,7 +71,7 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
     ConflictError:
-      description: Booking cannot be executed, for example room types are not available anymore (HTTP code 409)
+      description: Booking cannot be executed, for example seats in the chosen booking class are not available anymore (HTTP code 409)
       content:
         application/json:
           schema:
