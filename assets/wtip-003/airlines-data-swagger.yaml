@@ -159,10 +159,16 @@ components:
       type: object
       description: Data for a specific flight.
       required:
+        - id
         - departureDateTime
         - segments
         - updatedAt
       properties:
+        id:
+          description: A reference flight ID to be used during booking.
+          type: string
+          maxLength: 255
+          example: 'IeKeix6G'
         departureDateTime:
           description: Date and time of departure from the first segment
           type: string

@@ -1,0 +1,187 @@
+openapi: 3.0.0
+servers:
+  - description: Localhost
+    url: 'http://localhost:8935'
+info:
+  description: Winding Tree flight booking interface.
+  version: '0.0.1'
+  title: WT airlines booking API
+paths:
+  /:
+    get:
+      summary: API info
+      responses:
+        '200':
+          description: Basic information about this API instance.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - version
+                properties:
+                  docs:
+                    type: string
+                    description: Link to the API documentation.
+                  info:
+                    type: string
+                    description: Link to more information about the API.
+                  version:
+                    type: string
+                    description: Deployed API version number.
+                  config:
+                    type: string
+                    description: Which config is the API using.
+  /booking:
+    post:
+      summary: Create booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        200:
+          description: Booking was successfuly processed by the airline
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - finalizationUrl
+                properties:
+                  id:
+                    description: Reference for this particular booking
+                    type: string
+                  finalizationUrl:
+                    description: URL where the booking can be finalized (e.g. by paying for the flight tickets).
+                    type: string
+                    format: uri
+        400:
+          $ref: '#/components/responses/BadRequestError'
+        409:
+          $ref: '#/components/responses/ConflictError'
+components:
+  responses:
+    BadRequestError:
+      description: Either the server does not understand the request or requestion validation failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ConflictError:
+      description: Booking cannot be executed, for example seats in the chosen booking class are not available anymore (HTTP code 409)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Booking:
+      description: Booking object passed from the customer to the airline.
+      type: object
+      required:
+        - airlineId
+        - customer
+        - booking
+        - price
+      properties:
+        airlineId:
+          $ref: https://raw.githubusercontent.com/windingtree/wiki/ac6c33d38a9f91aa4b951a00acacf11905208550/hotel-data-swagger.yaml#/components/schemas/EthereumAddressType
+        customer:
+          $ref: '#/components/schemas/Customer'
+        booking:
+          $ref: '#/components/schemas/BookingInfo'
+        price:
+          type: object
+          required:
+            - total
+            - currency
+          properties:
+            total:
+              description: Total price that should be paid.
+              type: number
+              format: float
+            currency:
+              $ref: 'https://raw.githubusercontent.com/windingtree/wiki/ac6c33d38a9f91aa4b951a00acacf11905208550/hotel-data-swagger.yaml#/components/schemas/CurrencyType'
+    Customer:
+      description: Person responsible for this booking who should be contacted by the airline if needed
+      type: object
+      required:
+        - name
+        - surname
+        - email
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          description: E-mail contact
+          type: string
+          format: email
+          example: joseph.urban@example.com
+          maxLength: 150
+    BookingInfo:
+      description: Information on the booked seats.
+      type: object
+      required:
+        - flightNumber
+        - flightId
+        - bookingClasses
+      properties:
+        flightNumber:
+          description: Number of the booked flight.
+          type: string
+          minLength: 3
+          maxLength: 7
+        flightId:
+          description: ID of the booked flight.
+          type: string
+          maxLength: 255
+        bookingClasses:
+          type: array
+          items:
+            type: object
+            required:
+              - bookingClassId
+              - passengers
+            properties:
+              bookingClassId:
+                type: string
+              passengers:
+                type: array
+                description: |
+                  List of passengers. The length of the list
+                  corresponds to the number of seats booked for
+                  this class.
+                minItems: 1
+                items:
+                  $ref: '#/components/schemas/Passenger'
+    Passenger:
+      description: Passenger information.
+      type: object
+      required:
+        - name
+        - surname
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+    Error:
+      title: Error
+      description: Default schema for errors returned by API.
+      properties:
+        status:
+          type: number
+          description: HTTP status
+        code:
+          type: string
+          description: Computer-readable error. Use this for comparison.
+        short:
+          type: string
+          description: Human-readable error with a short description of the error.
+        long:
+          type: string
+          description: Verbose explanation of what happened.
