@@ -81,7 +81,7 @@ blockchain (i.e., register the airline on the WT airline index)
 and to off-chain storages (more about them later). Data
 consumers would then read from both.
 
-![Diagram - overview](../assets/wt-003/wt-airline-architecture-overview.svg)
+![Diagram - overview](../assets/wtip-003/wt-airline-architecture-overview.svg)
 
 #### Data structure
 
@@ -90,7 +90,7 @@ composed in terms of documents. We can see that the on-chain
 storage only holds a reference to the data root document, which
 in turn holds references to other sub-documents.
 
-![Diagram - overview](../assets/wt-003/wt-airline-architecture-data-structure.svg)
+![Diagram - overview](../assets/wtip-003/wt-airline-architecture-data-structure.svg)
 
 #### Example integration
 
@@ -112,7 +112,7 @@ integration can be done in practical terms:
     information can then be retrieved by following the
     references.
 
-![Diagram - overview](../assets/wt-003/wt-airline-architecture-example-integration.svg)
+![Diagram - overview](../assets/wtip-003/wt-airline-architecture-example-integration.svg)
 
 #### Booking
 
@@ -126,7 +126,7 @@ interface.
 
 ### Data structure
 
-The data structure is formally described [here](../assets/wt-003/airlines-data-swagger.yaml),
+The data structure is formally described [here](../assets/wtip-003/airlines-data-swagger.yaml),
 using the OpenAPI notation.
 
 ### Implementation details
