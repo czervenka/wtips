@@ -1,7 +1,7 @@
 ---
 wtip: 3
 title: Winding Tree Platform for Airlines - Proof of Concept proposal
-discussions-to: <URL> TODO: set discussion
+discussions-to: https://groups.google.com/forum/#!forum/windingtree
 authors: @hynek-urban
 status: Draft
 created: 2018-11-16
@@ -10,26 +10,28 @@ created: 2018-11-16
 # Winding Tree Platform for Airlines - Proof of Concept proposal
 
 ## Simple Summary
-<!--"If you can't explain it simply, you don't understand it well enough."
-Provide a simplified and layman-accessible explanation of the WTip.-->
+
 A proposal for generalization of the Winding Tree platform so that it can
 accommodate not just hotels but also airlines.
 
-
 ## Abstract
-<!--A short (~200 word) description of the technical issue being addressed.-->
-Current Winding Tree infrastructure does not allow other travel services beside
-accomodation. In this document we propose to modify Winding Tree data
-structure, WT Airline Index and relevant tools to enable basic airline data.
-The proposed solution is not full fledged solution but rather a minimal proof
-of concept base for validation and further research.
+
+Current Winding Tree infrastructure does not allow other travel
+services besides accommodation. In this document, we propose to
+modify the Winding Tree data structure, smart contracts and the
+surrounding ecosystem to enable the data distribution and basic
+processes related to airlines. The proposed solution aims to
+serve as a minimal proof-of-concept base for validation and
+further research.
 
 ## Motivation
-<!--The motivation is important how will the improvement contribute to actors
-in travel world.-->
-Offer flights on the Winding Tree platform. 
 
-## Overview
+Allow travel industry actors to offer flights on the Winding
+Tree platform.
+
+## Specification
+
+### Overview
 
 The proposed solution is supposed to be a simple proof of
 concept; a functional stepping stone that can be created with
@@ -40,7 +42,6 @@ With this in mind, we have decided to utilize as much from our
 existing hotel infrastructure as possible, making working with
 airlines very similar to working with hotels.
 
-## Specification
 ### Architecture
 
 Just like in case of hotels, we envision the airline platform having
@@ -128,22 +129,22 @@ interface.
 The data structure is formally described [here](../assets/wt-003/airlines-data-swagger.yaml),
 using the OpenAPI notation.
 
-## Implementation details
+### Implementation details
 
-### WT Read API
+#### WT Read API
 
 In case of [wt-read-api](https://github.com/windingtree/wt-read-api)
 we will simply add new endpoints handling airlines, next to the
 existing endpoints for hotels.
 
-### WT Notification API
+#### WT Notification API
 
 [wt-notification-api](https://github.com/windingtree/wt-notification-api)
 
 Update scopes need to be extended in the update notification
 data structure, nothing more.
 
-### WT Booking API
+#### WT Booking API
 
 [wt-booking-api](https://github.com/windingtree/wt-booking-api)
 
@@ -151,7 +152,7 @@ We need to define the booking interface and provide a reference
 implementation in the form of a dedicated endpoint in the
 wt-booking-api repository.
 
-### NDC Compatibility
+#### NDC Compatibility
 
 From the point of view of the WT Platform, [NDC](https://www.iata.org/whatwedo/airline-distribution/ndc/Pages/default.aspx)-compatible
 APIs can be viewed as off-chain storages to read from (and
