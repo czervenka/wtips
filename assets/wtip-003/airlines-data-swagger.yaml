@@ -47,12 +47,9 @@ components:
         descriptionUri:
           description: URI pointing to the AirlineDescription data resource
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
-        servicesUri:
-          description: URI pointing to Services data resource
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
         flightsUri:
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
-          description: URI pointing to FlightUris data resource
+          description: URI pointing to Flights data resource
         bookingUri:
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to an instance of the WT Booking service.
@@ -84,9 +81,9 @@ components:
           type: string
           description: Date-time when the data was last changed. Used by consumers to handle incremental updates and caching.
           format: date-time
-    Services:
+    Flights:
       type: object
-      description: A set of airline services.
+      description: A set of scheduled flights.
       required:
         - updatedAt
         - flightNumbers
@@ -95,18 +92,19 @@ components:
           type: object
           description: Object where property names are flight numbers.
           additionalProperties:
-            $ref: '#/components/schemas/FlightNumber'
+            $ref: '#/components/schemas/Flight'
         updatedAt:
           description: Time of the last update of services information.
           type: string
           format: date-time
-    FlightNumber:
+    Flight:
       type: object
       description: A single airline service.
       required:
         - origin
         - destination
         - segments
+        - flightInstancesUri
       properties:
         origin:
           description: IATA code of the origin airport.
@@ -137,25 +135,15 @@ components:
               arrivalAirport:
                 description: IATA code of the arrival airport.
                 $ref: '#/components/schemas/AirportCodeType'
-    FlightUris:
-      type: object
-      description: A mapping of flight numbers to flight detail URIs.
-      properties:
-        uris:
-          type: object
-          description: Object where property names are flight numbers and values are URIs serving the Flights data resource.
-          additionalProperties:
-            $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
-        updatedAt:
-          description: Time of the last update of flight information.
-          type: string
-          format: date-time
-    Flights:
+        flightInstancesUri:
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+          description: URI pointing to the FlightInstances resource.
+    FlightInstances:
       description: Array of flight instances for a specific flight number.
       type: array
       items:
-        $ref: '#/components/schemas/Flight'
-    Flight:
+        $ref: '#/components/schemas/FlightInstance'
+    FlightInstance:
       type: object
       description: Data for a specific flight.
       required:
@@ -211,8 +199,8 @@ components:
                 format: int32
         segments:
           description: |
-            An object whose keys are segment IDs (they should match the IDs in the FlightNumber data).
-            It specifies information for individual flight segments for the given flight.
+            An object whose keys are segment IDs (they should match the segment IDs in the Flight data).
+            It specifies information for individual flight segments for the given flight instance.
           type: object
           additionalProperties:
             type: object
