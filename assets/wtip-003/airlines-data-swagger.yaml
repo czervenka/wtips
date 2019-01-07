@@ -86,12 +86,12 @@ components:
       description: A set of scheduled flights.
       required:
         - updatedAt
-        - flightNumbers
+        - flights
       properties:
-        flightNumbers:
-          type: object
-          description: Object where property names are flight numbers.
-          additionalProperties:
+        flights:
+          type: array
+          description: Array of Flights
+          items:
             $ref: '#/components/schemas/Flight'
         updatedAt:
           description: Time of the last update of services information.
@@ -101,11 +101,17 @@ components:
       type: object
       description: A single airline service.
       required:
+        - id
         - origin
         - destination
         - segments
         - flightInstancesUri
       properties:
+        id:
+          description: A flight ID.
+          type: string
+          maxLength: 255
+          example: 'OK 0965'
         origin:
           description: IATA code of the origin airport.
           $ref: '#/components/schemas/AirportCodeType'
