@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers: []
 info:
-  version: "0.0.1"
+  version: "0.0.2"
   title: Airline data definitions
   description: Object definitions for the airline part of the WT platform.
 paths: {}
@@ -50,6 +50,9 @@ components:
         flightsUri:
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to Flights data resource
+        notificationsUri:
+          $ref: '#/components/schemas/UriType'
+          description: URI pointing to an instance of the WT Notification service.
         bookingUri:
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to an instance of the WT Booking service.
@@ -111,7 +114,7 @@ components:
           description: A flight ID.
           type: string
           maxLength: 255
-          example: 'OK 0965'
+          example: 'OK0965'
         origin:
           description: IATA code of the origin airport.
           $ref: '#/components/schemas/AirportCodeType'
