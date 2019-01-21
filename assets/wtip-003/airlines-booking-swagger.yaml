@@ -49,11 +49,26 @@ paths:
               schema:
                 type: object
                 required:
+                  - id
                   - finalizationUrl
                 properties:
                   id:
-                    description: Reference for this particular booking
+                    $ref: '#/components/schemas/BookingId'
+                  status:
+                    description: |
+                      Status of the created booking. Can be one of the following:
+                        - `pending` - Hotel system has accepted the
+                          booking request and saved it to be
+                          confirmed or rejected later on. The
+                          customer can be notified about the
+                          final result by e-mail.
+                        - `confirmed` - The booking request has
+                          been accepted and confirmed by the
+                          hotel right away.
                     type: string
+                    enum:
+                      - pending
+                      - confirmed
                   finalizationUrl:
                     description: URL where the booking can be finalized (e.g. by paying for the flight tickets).
                     type: string
@@ -84,7 +99,7 @@ components:
         - airlineId
         - customer
         - booking
-        - price
+        - pricing
       properties:
         airlineId:
           $ref: https://raw.githubusercontent.com/windingtree/wiki/ac6c33d38a9f91aa4b951a00acacf11905208550/hotel-data-swagger.yaml#/components/schemas/EthereumAddressType
@@ -92,7 +107,7 @@ components:
           $ref: '#/components/schemas/Customer'
         booking:
           $ref: '#/components/schemas/BookingInfo'
-        price:
+        pricing:
           type: object
           required:
             - total

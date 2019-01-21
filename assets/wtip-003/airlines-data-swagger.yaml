@@ -65,6 +65,7 @@ components:
       - code
       - contacts
       - updatedAt
+      - defaultCancellationAmount
       properties:
         name:
           description: Name of the airline to display to users
@@ -84,6 +85,16 @@ components:
           type: string
           description: Date-time when the data was last changed. Used by consumers to handle incremental updates and caching.
           format: date-time
+        defaultCancellationAmount:
+          type: number
+          format: float
+          description: Cost of cancellation in percents of the final price, 100 means non refundable. This is a default amount of how much money will the airline keep if no other cancallation policy is applicable.
+          example: 25
+        cancellationPolicies:
+          description: A list of policies under which it is possible to cancel a reservation.
+          type: array
+          items:
+            $ref: '#/components/schemas/CancellationPolicy'
     Flights:
       type: object
       description: A set of scheduled flights.
@@ -243,7 +254,32 @@ components:
         currency:
           description: Fare price currency.
           $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/CurrencyType'
-          
+    CancellationPolicy:
+      title: Cancellation policy
+      type: object
+      description: What is the penalty when a passanger wants to cancel a reservation.
+      required:
+      - amount
+      properties:
+        from:
+          description: After which date does this cancellation policy apply (including). If not present, this policy applies since the beginning of time. This is related to arrival and departure dates, not the date of the booking.
+          type: string
+          format: date-time
+          example: "2018-01-30 00:00:00"
+        to:
+          description: Before which date does this cancellation policy apply (including). If not present, this policy applies until the end of the universe. This is related to arrival and departure dates, not the date of the booking.
+          type: string
+          format: date-time
+          example: "2018-02-20 12:00:00"
+        deadline:
+          type: integer
+          description: How many days before arrival does this first apply. If not present, this policy applies any time.
+          example: 30
+        amount:
+          type: number
+          format: float
+          description: Cost of cancellation in percents of the final price, 100 means non refundable. This means how much money will the hotel keep.
+          example: 25
   # elementary schemas
     AirlineCodeType:
       title: Airline Code.
