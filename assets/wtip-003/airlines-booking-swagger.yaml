@@ -4,7 +4,7 @@ servers:
     url: 'http://localhost:8935'
 info:
   description: Winding Tree flight booking interface.
-  version: '0.0.1'
+  version: '0.0.2'
   title: WT airlines booking API
 paths:
   /:
@@ -105,6 +105,10 @@ components:
           $ref: https://raw.githubusercontent.com/windingtree/wiki/ac6c33d38a9f91aa4b951a00acacf11905208550/hotel-data-swagger.yaml#/components/schemas/EthereumAddressType
         customer:
           $ref: '#/components/schemas/Customer'
+        note:
+          description: Additional information passed to a hotel from a customer
+          type: string
+          maxLength: 3000
         booking:
           $ref: '#/components/schemas/BookingInfo'
         pricing:
@@ -142,7 +146,7 @@ components:
       type: object
       required:
         - flightNumber
-        - flightId
+        - flightInstanceId
         - bookingClasses
       properties:
         flightNumber:
@@ -150,7 +154,7 @@ components:
           type: string
           minLength: 3
           maxLength: 7
-        flightId:
+        flightInstanceId:
           description: ID of the booked flight.
           type: string
           maxLength: 255

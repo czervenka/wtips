@@ -181,7 +181,7 @@ components:
           description: Date and time of departure from the first segment
           type: string
           format: date-time
-        bookingClassess:
+        bookingClasses:
           description: |
             Array of price and availability information for
             various booking classes of the flight. In the
@@ -217,7 +217,7 @@ components:
               availabilityCount:
                 type: integer
                 format: int32
-        segments:
+        segments: # TODO remove data from keys
           description: |
             An object whose keys are segment IDs (they should match the segment IDs in the Flight data).
             It specifies information for individual flight segments for the given flight instance.
@@ -273,7 +273,7 @@ components:
           example: "2018-02-20 12:00:00"
         deadline:
           type: integer
-          description: How many days before arrival does this first apply. If not present, this policy applies any time.
+          description: How many days before flight departure does this first apply. If not present, this policy applies any time.
           example: 30
         amount:
           type: number
