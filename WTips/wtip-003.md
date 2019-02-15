@@ -126,12 +126,14 @@ agreed interface.
 a "finalization URL" where the booking process can be finalized
 (e.g. by paying for the tickets).
 
-The proposed interface of the booking service is [here](../assets/wtip-003/airlines-booking-swagger.yaml).
+The interface of the booking service is [here](https://github.com/windingtree/wt-booking-api/blob/master/docs/swagger.yaml).
+([Earlier proposal](../assets/wtip-003/airlines-booking-swagger.yaml).)
 
 ### Data structure
 
-The data structure is formally described [here](../assets/wtip-003/airlines-data-swagger.yaml),
+The data structure is formally described [here](https://github.com/windingtree/wiki/blob/master/airline-data-swagger.yaml),
 using the OpenAPI notation.
+([Earlier proposal](../assets/wtip-003/airlines-data-swagger.yaml).)
 
 ### Implementation details
 
