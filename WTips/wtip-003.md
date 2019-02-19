@@ -168,5 +168,30 @@ than) the existing swarm and http adapters. To this end, we
 might base the work on the [NDC adapter](https://github.com/afklblockchain)
 developed by the AFKL team in the WindingTree hackathon.
 
+## Rationale
+
+### Why not make this fully NDC-Based?
+
+Several people have proposed a competing vision of the WT Airline
+platform where instead of documents, the entries in the WT
+Airline Index point to NDC-compatible APIs. The platform is then
+basically reduced to a public registry of standardized APIs.
+
+Such an approach has one major advantage - it builds on an
+existing standard (IATA's NDC) and requires very little
+additional work from the airlines. So why did we choose
+a different route? There are several reasons:
+
+- It is not clear what value would this approach bring compared
+to what exists already (e.g. the [IATA NDC Registry](https://www.iata.org/whatwedo/airline-distribution/ndc/Pages/registry.aspx)).
+- NDC implies using authentication / authorization of parties
+(called "Sellers" or "Aggregators") to limit access to the API.
+This goes directly against Winding Tree's goal of enabling
+"permissionless innovation" by opening the data to anyone.
+- The mission of Winding Tree is to develop a set of open
+protocols and open-source tools. However, the NDC standard
+specification itself is not open as it is covered by a license
+that does not allow free redistribution.
+
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
