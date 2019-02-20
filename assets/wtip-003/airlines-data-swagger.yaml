@@ -7,6 +7,7 @@ info:
 paths: {}
 components:
   schemas:
+  # WT-Index formats
     AirlineOnChain:
       title: WT-Index airline record
       description: Airline record in WT-Index smart contract
@@ -19,18 +20,18 @@ components:
       properties:
         address:
           description: Ethereum address of the airline
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/EthereumAddressType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/EthereumAddressType'
         manager:
           description: Ethereum address of the manager wallet
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/EthereumAddressType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/EthereumAddressType'
         dataUri:
           description: URI of the Airline data index (pointing off-chain)
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/UriType'
         created:
           description: Number of a block when the airline was created
           type: integer
 
-    # Off chain data formats  
+    # Off chain data formats
     AirlineDataIndex:
       title: Airline data index
       description: Landing index for airline resources. Link to this document is stored in WT-Index smart contract airline record.
@@ -46,30 +47,37 @@ components:
           maxLength: 20
         descriptionUri:
           description: URI pointing to the AirlineDescription data resource
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/UriType'
         flightsUri:
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to Flights data resource
         notificationsUri:
-          $ref: '#/components/schemas/UriType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to an instance of the WT Notification service.
         bookingUri:
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/UriType'
           description: URI pointing to an instance of the WT Booking service.
     AirlineDescription:
+      title: Airline description
+      allOf:
+        - $ref: '#/components/schemas/AirlineDescriptionBase'
+        - type: object
+          required:
+          - name
+          - code
+          - contacts
+          - updatedAt
+          - defaultCancellationAmount
+    AirlineDescriptionBase:
       title: Airline description.
       description: Basic properties of an airline.
       type: object
-      required:
-      - name
-      - code
-      - contacts
-      - updatedAt
-      - defaultCancellationAmount
       properties:
         name:
           description: Name of the airline to display to users
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/NameType'
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/NameType'
+        operator:
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/LegalEntityType'
         code:
           $ref: '#/components/schemas/AirlineCodeType'
         contacts:
@@ -80,7 +88,7 @@ components:
           properties:
             general:
               description: Primary contact
-              $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/Contact'
+              $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/Contact'
         updatedAt:
           type: string
           description: Date-time when the data was last changed. Used by consumers to handle incremental updates and caching.
@@ -94,15 +102,15 @@ components:
           description: A list of policies under which it is possible to cancel a reservation.
           type: array
           items:
-            $ref: '#/components/schemas/CancellationPolicy'
+            $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/CancellationPolicy'
     Flights:
       type: object
       description: A set of scheduled flights.
       required:
         - updatedAt
-        - flights
+        - items
       properties:
-        flights:
+        items:
           type: array
           description: Array of Flights
           items:
@@ -119,7 +127,7 @@ components:
         - origin
         - destination
         - segments
-        - flightInstancesUri
+        - flightInstances
       properties:
         id:
           description: A flight ID.
@@ -155,8 +163,8 @@ components:
               arrivalAirport:
                 description: IATA code of the arrival airport.
                 $ref: '#/components/schemas/AirportCodeType'
-        flightInstancesUri:
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/UriType'
+        flightInstances:
+          $ref: '#/components/schemas/FlightInstances'
           description: URI pointing to the FlightInstances resource.
     FlightInstances:
       description: Array of flight instances for a specific flight number.
@@ -170,10 +178,11 @@ components:
         - id
         - departureDateTime
         - segments
+        - bookingClasses
         - updatedAt
       properties:
         id:
-          description: A reference flight ID to be used during booking.
+          description: A reference flight instance ID to be used during booking.
           type: string
           maxLength: 255
           example: 'IeKeix6G'
@@ -227,7 +236,6 @@ components:
             required:
               - departureDateTime
               - arrivalDateTime
-              - bookingClasses
             properties:
               departureDateTime:
                 description: Time of the departure.
@@ -253,33 +261,7 @@ components:
           format: float
         currency:
           description: Fare price currency.
-          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/2c6312c06b15a2c12fe764ce10bdb6c4a0f78843/shared-resources.yaml#/components/schemas/CurrencyType'
-    CancellationPolicy:
-      title: Cancellation policy
-      type: object
-      description: What is the penalty when a passanger wants to cancel a reservation.
-      required:
-      - amount
-      properties:
-        from:
-          description: After which date does this cancellation policy apply (including). If not present, this policy applies since the beginning of time. This is related to arrival and departure dates, not the date of the booking.
-          type: string
-          format: date-time
-          example: "2018-01-30 00:00:00"
-        to:
-          description: Before which date does this cancellation policy apply (including). If not present, this policy applies until the end of the universe. This is related to arrival and departure dates, not the date of the booking.
-          type: string
-          format: date-time
-          example: "2018-02-20 12:00:00"
-        deadline:
-          type: integer
-          description: How many days before flight departure does this first apply. If not present, this policy applies any time.
-          example: 30
-        amount:
-          type: number
-          format: float
-          description: Cost of cancellation in percents of the final price, 100 means non refundable. This means how much money will the hotel keep.
-          example: 25
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/b7e4c6a1a99f501dedd91a5a4c858a332546f4bf/shared-resources.yaml#/components/schemas/CurrencyType'
   # elementary schemas
     AirlineCodeType:
       title: Airline Code.
