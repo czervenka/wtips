@@ -30,8 +30,7 @@ further research.
 
 ## Motivation
 
-Allow travel industry actors to offer flights on the Winding
-Tree platform.
+Allow airlines to offer flights on the Winding Tree platform.
 
 ## Specification
 
@@ -123,10 +122,15 @@ integration can be done in practical terms:
 Initially, booking will work just like it does in case of
 hotels:
 
-- The airline provides a booking service conforming to the agreed
-interface.
+- The airline provides a booking service conforming to the
+agreed interface.
 - The airline data root points to the service address.
 - Consumers can send their booking requests there.
+- The airline responds with a booking reference and
+a "finalization URL" where the booking process can be finalized
+(e.g. by paying for the tickets).
+
+The proposed interface of the booking service is [here](../assets/wtip-003/airlines-booking-swagger.yaml).
 
 ### Data structure
 
@@ -152,9 +156,9 @@ data structure, nothing more.
 
 [wt-booking-api](https://github.com/windingtree/wt-booking-api)
 
-We need to define the booking interface and provide a reference
-implementation in the form of a dedicated endpoint in the
-wt-booking-api repository.
+We will create a reference implementation of the proposed
+airline booking interface (similarly to the current
+wt-booking-api in case of hotels).
 
 #### NDC Compatibility
 
