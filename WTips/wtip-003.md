@@ -2,9 +2,13 @@
 wtip: 3
 title: Winding Tree Platform for Airlines - Proof of Concept proposal
 discussions-to: https://groups.google.com/forum/#!forum/windingtree
-authors: @hynek-urban
-status: Draft
+authors: @hynek-urban @ondrejchmelar
+status: Final 
 created: 2018-11-16
+---
+
+**Note: This WTip has been implemented for current implementation look at https://docs.windingtree.com.**
+
 ---
 
 # Winding Tree Platform for Airlines - Proof of Concept proposal
