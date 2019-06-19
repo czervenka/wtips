@@ -1,0 +1,408 @@
+openapi: 3.0.0
+servers:
+  - description: Localhost
+    url: 'http://localhost:8935'
+info:
+  description: Winding Tree booking interface.
+  version: 'will-be-set-at-runtime'
+  title: WT booking API
+paths:
+  /:
+    get:
+      summary: API info
+      responses:
+        '200':
+          description: Basic information about this API instance.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - version
+                properties:
+                  docs:
+                    type: string
+                    description: Link to the API documentation.
+                  info:
+                    type: string
+                    description: Link to more information about the API.
+                  version:
+                    type: string
+                    description: Deployed API version number.
+                  config:
+                    type: string
+                    description: Which config is the API using.
+  /booking:
+    post:
+      summary: Create booking. Schema to be used depends on WT_SEGMENT this instance is run with.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/HotelBooking'
+                - $ref: '#/components/schemas/AirlineBooking'
+      responses:
+        200:
+          description: Booking was successfuly processed
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - status
+                properties:
+                  id:
+                    $ref: '#/components/schemas/BookingId'
+                  status:
+                    description: |
+                      Status of the created booking. Can be one of the following:
+                        - `pending` - The system has accepted the
+                          booking request and saved it to be
+                          confirmed or rejected later on. The
+                          customer can be notified about the
+                          final result by e-mail.
+                        - `confirmed` - The booking request has
+                          been accepted and confirmed by the
+                          hotel right away.
+                    type: string
+                    enum:
+                      - pending
+                      - confirmed
+                  finalizationUrl:
+                    description: URL where the booking can be finalized (e.g. by payment).
+                    type: string
+                    format: uri
+        400:
+          $ref: '#/components/responses/BadRequestError'
+        409:
+          $ref: '#/components/responses/ConflictError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        502:
+          $ref: '#/components/responses/BadGatewayError'
+        503:
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/booking/{bookingId}':
+    parameters:
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID as returned by POST /booking
+        schema:
+          $ref: '#/components/schemas/BookingId'
+    delete:
+      summary: Cancel booking
+      responses:
+        204:
+          description: Booking was cancelled.
+        403:
+          $ref: '#/components/responses/ForbiddenError'
+        404:
+          $ref: '#/components/responses/NotFoundError'
+        409:
+          description: Booking cannot be cancelled due to a data conflict.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - type: object
+                    description: Booking has already been cancelled.
+                    properties:
+                      code:
+                        enum:
+                          - alreadyCancelled
+                  - type: object
+                    description: Cannot cancel booking due to conflicts in availability data.
+                    properties:
+                      code:
+                        enum:
+                          - cannotCancel
+components:
+  responses:
+    BadRequestError:
+      description: The server does not understand the request (HTTP code 400)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ConflictError:
+      description: Booking cannot be executed, for example room types are not available anymore (HTTP code 409)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ForbiddenError:
+      description: The requested action is forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntityError:
+      description: Request body or params validation failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadGatewayError:
+      description: Upstream APIs are not responding
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceUnavailable:
+      description: Upstream APIs are responding with 503 Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    BookingId:
+      description: Reference ID for this particular booking.
+      type: string
+      maxLength: 255
+    HotelBooking:
+      description: Booking object passed from a customer to a hotel
+      type: object
+      required:
+        - customer
+        - hotelId
+        - booking
+        - pricing
+      properties:
+        customer:
+          $ref: '#/components/schemas/Customer'
+        note:
+          description: Additional information passed to a hotel from a customer
+          type: string
+          maxLength: 3000
+        hotelId:
+          $ref: https://raw.githubusercontent.com/windingtree/wiki/ef3fd90df7fcd1461cad1be2cb5bfeefb4fe4633/shared-resources.yaml#/components/schemas/EthereumAddressType
+        booking:
+          $ref: '#/components/schemas/HotelBookingInfo'
+        pricing:
+          $ref: '#/components/schemas/Pricing'
+        # billing: TBD (cash on arrival, card on arrival, online payment, crypto)
+        # guarantee: TBD (can be for example credit card info)
+    Customer:
+      description: Person responsible for this booking who should be contacted by the supplier if needed
+      type: object
+      required:
+        - name
+        - surname
+        - email
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        surname:
+          type: string
+          maxLength: 255
+        address:
+          $ref: https://raw.githubusercontent.com/windingtree/wiki/1b7bd3e03f88fdfce6d2f0cf27059caf889eb036/hotel-data-swagger.yaml#/components/schemas/Address
+        email:
+          description: E-mail contact
+          type: string
+          format: email
+          example: joseph.urban@example.com
+          maxLength: 150
+        phone:
+          description: Phone number (with country prefix)
+          type: string
+          format: phone
+          maxLength: 18
+          example: +44123456789
+    Room:
+      type: object
+      required:
+        - id
+        - guestInfoIds
+      properties:
+        id:
+          description: Room type ID as stated in the Hotel description document on WT
+          type: string
+        guestInfoIds:
+          type: array
+          items:
+            description: Which guests will be staying in this room? The strings should be id fields from guestInfo, so we can match the guests and their additional information when needed.
+            type: string
+    Pricing:
+      type: object
+      required:
+        - currency
+        - total
+        - cancellationFees
+      properties:
+        currency:
+          $ref: 'https://raw.githubusercontent.com/windingtree/wiki/ef3fd90df7fcd1461cad1be2cb5bfeefb4fe4633/shared-resources.yaml#/components/schemas/CurrencyType'
+        total:
+          description: Total price that should be paid. Including taxes - this is subject to change in the future.
+          type: number
+          format: float
+        # amenities
+        cancellationFees:
+          description: >-
+            Under what conditions can this booking be cancelled and how much will it cost.
+            Note that the cancellation fees should cover the whole period from the moment of booking up to
+            service usage (hotel arrival or flight departure) and should be based on the supplier's cancellation policy.
+            (Each cancellation fee should correspond to an applicable cancellation policy.)
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+              - from
+              - to
+              - amount
+            properties:
+              from:
+                description: After which date does this cancellation fee apply (inclusive).
+                type: string
+                format: date
+              to:
+                description: Until which date does this cancellation policy apply (inclusive).
+                type: string
+                format: date
+              amount:
+                description: Cost of cancellation in percents of the final price, 100 means non refundable. This means how much money will the airline/hotel keep.
+                type: number
+                format: float
+    HotelBookingInfo:
+      description: Information on the booked property
+      type: object
+      required:
+        - arrival
+        - departure
+        - rooms
+        - guestInfo
+      properties:
+        arrival:
+          description: At what day will the people arrive
+          type: string
+          format: date
+        departure:
+          description: At what day will the people depart
+          type: string
+          format: date
+        guestInfo:
+          description: Additional information on every guest when required
+          type: array
+          items:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                description: Unique identifier for every guest, it can for example be a numerical ordinal. Every booking originator has to generate this data as it's used as a base for all other guest-related information (such as total number of guests).
+                type: string
+                maxLength: 255
+              name:
+                type: string
+                maxLength: 255
+              surname:
+                type: string
+                maxLength: 255
+              age:
+                description: Age at the time of arrival
+                type: number
+        rooms:
+          type: array
+          description: List of rooms that form this booking. If a single room type is booked more than once, it shall be present more than once.
+          items:
+            $ref: '#/components/schemas/Room'
+    AirlineBooking:
+      description: Booking object passed from a customer to an airline supplier
+      type: object
+      required:
+        - customer
+        - airlineId
+        - booking
+        - pricing
+      properties:
+        customer:
+          $ref: '#/components/schemas/Customer'
+        note:
+          description: Additional information passed to an airline from a customer
+          type: string
+          maxLength: 3000
+        airlineId:
+          $ref: https://raw.githubusercontent.com/windingtree/wiki/ef3fd90df7fcd1461cad1be2cb5bfeefb4fe4633/shared-resources.yaml#/components/schemas/EthereumAddressType
+        booking:
+          $ref: '#/components/schemas/AirlineBookingInfo'
+        pricing:
+          $ref: '#/components/schemas/Pricing'
+        # billing: TBD (cash on arrival, card on arrival, online payment, crypto)
+        # guarantee: TBD (can be for example credit card info)
+    AirlineBookingInfo:
+      description: Information on the booked seats.
+      type: object
+      required:
+        - flightNumber
+        - flightInstanceId
+        - bookingClasses
+      properties:
+        flightNumber:
+          description: Number of the booked flight.
+          type: string
+          minLength: 3
+          maxLength: 7
+        flightInstanceId:
+          description: ID of the booked flight.
+          type: string
+          maxLength: 255
+        bookingClasses:
+          type: array
+          items:
+            type: object
+            required:
+              - bookingClassId
+              - passengers
+            properties:
+              bookingClassId:
+                type: string
+              passengers:
+                type: array
+                description: |
+                  List of passengers. The length of the list
+                  corresponds to the number of seats booked for
+                  this class.
+                minItems: 1
+                items:
+                  $ref: '#/components/schemas/Passenger'
+    Passenger:
+      description: Passenger information.
+      type: object
+      required:
+        - name
+        - surname
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+
+    Error:
+      title: Error
+      description: Default schema for errors returned by API.
+      properties:
+        status:
+          type: number
+          description: HTTP status
+        code:
+          type: string
+          description: Computer-readable error. Use this for comparison.
+        short:
+          type: string
+          description: Human-readable error with a short description of the error.
+        long:
+          type: string
+          description: Verbose explanation of what happened.

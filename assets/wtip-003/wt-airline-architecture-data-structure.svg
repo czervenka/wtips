@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="53.762cm" height="28.775cm" viewBox="19.662 -3.537 53.762 28.775"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Layer: Pozadí -->
+<g id="Pozadí">
+<!-- Flowchart - Box -->
+<rect x="30.623" y="17.950" width="26.977" height="7.238" fill="#FFFFFF" stroke="#000000" stroke-width="0.100" stroke-dasharray="0.10,0.10" rx="0.000" />
+<!-- Flowchart - Box -->
+<rect x="23.436" y="6.475" width="6.735" height="3.350" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="26.803" y="8.345"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data root</text>
+<!-- Standard - Line -->
+<line x1="26.300" y1="13.800" x2="61.250" y2="13.900" stroke="#000000" stroke-width="0.100" stroke-dasharray="1.00,1.00"/>
+<!-- Standard - Text -->
+<text x="26.650" y="14.950"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Blockchain</text>
+<!-- Standard - Text -->
+<text x="26.640" y="12.870"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Off-chain</text>
+<!-- Flowchart - Box -->
+<rect x="31.266" y="19.150" width="7.568" height="2.950" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="35.050" y="20.420"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data</text>
+<text x="35.050" y="21.220"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+root URI</text>
+<!-- Flowchart - Box -->
+<rect x="39.990" y="19.175" width="7.568" height="2.950" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="43.774" y="20.445"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data</text>
+<text x="43.774" y="21.245"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+root URI</text>
+<!-- Flowchart - Box -->
+<rect x="48.640" y="19.125" width="7.567" height="2.950" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="52.424" y="20.395"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data</text>
+<text x="52.424" y="21.195"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+root URI</text>
+<!-- Flowchart - Box -->
+<rect x="19.712" y="1.488" width="4.575" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="22.000" y="2.633"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Static data</text>
+<!-- Flowchart - Box -->
+<rect x="30.141" y="1.388" width="3.218" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="31.750" y="2.533"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Flights</text>
+<!-- Flowchart - Box -->
+<rect x="21.211" y="-3.212" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="24.284" y="-2.067"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+AA123 Dates</text>
+<!-- Standard - Text -->
+<!-- Flowchart - Box -->
+<rect x="28.590" y="-3.287" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="31.663" y="-2.142"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+AA456 Dates</text>
+<!-- Flowchart - Box -->
+<rect x="47.213" y="6.525" width="6.735" height="3.350" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="50.581" y="8.395"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Airline data root</text>
+<!-- Flowchart - Box -->
+<rect x="43.390" y="1.488" width="4.575" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="45.677" y="2.633"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Static data</text>
+<!-- Flowchart - Box -->
+<rect x="53.219" y="1.488" width="3.218" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="54.827" y="2.633"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Flights</text>
+<!-- Flowchart - Box -->
+<rect x="44.289" y="-3.362" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="47.361" y="-2.217"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+BB123 Dates</text>
+<!-- Flowchart - Box -->
+<rect x="51.667" y="-3.437" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="54.740" y="-2.292"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+BB456 Dates</text>
+<!-- Standard - Line -->
+<line x1="25.353" y1="6.426" x2="22.985" y2="3.609" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="23.426,3.745 22.913,3.523 23.043,4.067 "/>
+<!-- Standard - Line -->
+<line x1="28.233" y1="6.470" x2="30.754" y2="3.508" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="30.693,3.965 30.827,3.422 30.312,3.641 "/>
+<!-- Standard - Line -->
+<line x1="30.127" y1="1.337" x2="26.097" y2="-1.145" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="26.559,-1.154 26.002,-1.204 26.297,-0.729 "/>
+<!-- Standard - Line -->
+<line x1="31.731" y1="1.337" x2="31.685" y2="-1.114" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="31.943,-0.730 31.683,-1.225 31.443,-0.721 "/>
+<!-- Standard - Line -->
+<line x1="49.113" y1="6.475" x2="46.673" y2="3.607" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="47.115,3.741 46.600,3.522 46.734,4.065 "/>
+<!-- Standard - Line -->
+<line x1="51.852" y1="6.475" x2="53.958" y2="3.617" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="53.929,4.078 54.024,3.527 53.527,3.781 "/>
+<!-- Standard - Line -->
+<line x1="53.288" y1="1.438" x2="49.088" y2="-1.291" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="49.550,-1.289 48.994,-1.352 49.278,-0.870 "/>
+<!-- Standard - Line -->
+<line x1="54.810" y1="1.476" x2="54.761" y2="-1.302" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="55.018,-0.918 54.759,-1.414 54.518,-0.909 "/>
+<!-- Standard - Line -->
+<line x1="35.050" y1="19.150" x2="28.230" y2="10.054" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="28.663,10.214 28.163,9.964 28.263,10.514 "/>
+<!-- Standard - Line -->
+<line x1="43.774" y1="19.175" x2="49.396" y2="10.110" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="49.404,10.572 49.455,10.015 48.979,10.308 "/>
+<!-- Flowchart - Box -->
+<rect x="66.640" y="6.463" width="6.735" height="3.350" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="70.007" y="8.333"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+...</text>
+<!-- Standard - Line -->
+<line x1="52.424" y1="19.125" x2="67.057" y2="9.981" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="66.860,10.399 67.152,9.922 66.595,9.975 "/>
+<!-- Flowchart - Box -->
+<rect x="36.140" y="-3.387" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="39.213" y="-2.242"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+...</text>
+<!-- Flowchart - Box -->
+<rect x="59.290" y="-3.487" width="6.145" height="1.900" fill="#FFFFFF" stroke="#000000" stroke-width="0.100"  rx="0.000" />
+<text x="62.363" y="-2.342"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+...</text>
+<!-- Standard - Line -->
+<line x1="33.311" y1="1.338" x2="37.463" y2="-1.318" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="37.271,-0.898 37.557,-1.378 37.001,-1.319 "/>
+<!-- Standard - Line -->
+<line x1="56.336" y1="1.442" x2="60.667" y2="-1.418" stroke="#29C42A" stroke-width="0.100" />
+<polyline fill="none" stroke="#29C42A" stroke-width="0.100"  points="60.481,-0.996 60.761,-1.480 60.206,-1.413 "/>
+<!-- Standard - Text -->
+<text x="41.261" y="24.175"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+WT Airline Index</text>
+</g>
+</svg>
